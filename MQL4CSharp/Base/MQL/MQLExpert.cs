@@ -310,6 +310,7 @@ namespace MQL4CSharp.Base.MQL
         [DllExport("ExecOnTick", CallingConvention = CallingConvention.StdCall)]
         public static void ExecOnTick(Int64 ix)
         {
+            LOG.Info("ExecOnTick01");
             getInstance(ix).executingOnTick = true;
             try
             {
@@ -324,15 +325,23 @@ namespace MQL4CSharp.Base.MQL
         [DllExport("ExecOnTimer", CallingConvention = CallingConvention.StdCall)]
         public static void ExecOnTimer(Int64 ix)
         {
+            LOG.Info(string.Format("ExecOnTimer01:ix->{0}", ix));
+
             getInstance(ix).executingOnTimer = true;
             try
             {
+                LOG.Info("ExecOnTimer02");
+                LOG.Info(getInstance(ix).timer);
+
                 DateTime now = DateTime.Now;
                 if (now >= getInstance(ix).timer.AddMilliseconds(getInstance(ix).timerInterval)) // execute every timeout millis
                 {
+                    LOG.Info("ExecOnTimer03");
                     getInstance(ix).timer = now;
                     getThreadPool(ix).QueueWorkItem(OnTimerThread, ix);
+                    LOG.Info("ExecOnTimer04");
                 }
+                LOG.Info("ExecOnTimer05");
             }
             catch (Exception e)
             {

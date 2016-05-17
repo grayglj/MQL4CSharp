@@ -61,7 +61,9 @@ namespace MQL4CSharp.Base.MQL
 
         public override string ToString()
         {
-            return $"Command: {Command}, Parameters: {Parameters}, CommandWaiting: {CommandWaiting}, Response: {Response}, Error: {Error}";
+            //return $"Command: {Command}, Parameters: {Parameters}, CommandWaiting: {CommandWaiting}, Response: {Response}, Error: {Error}";
+            return string.Format("Command: {0}, Parameters: {1}, CommandWaiting: {2}, Response: {3}, Error: {4}",
+                Command, Parameters, CommandWaiting, Response, Error);
         }
     }
 
