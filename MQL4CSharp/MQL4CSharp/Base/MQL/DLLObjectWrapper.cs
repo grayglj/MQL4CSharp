@@ -70,7 +70,7 @@ namespace MQL4CSharp.Base.MQL
             mqlCommandManagers = new Dictionary<Int64, MQLCommandManager>();
             mqlThreadPools = new Dictionary<Int64, MQLThreadPool>();
             mqlExpertsLock = new object();
-            restServer = new RESTServer();
+            restServer = new RESTServer(port:"8866");
             restServer.Start();
 
             // create the default command manager for REST
