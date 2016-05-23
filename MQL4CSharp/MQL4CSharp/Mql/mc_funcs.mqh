@@ -346,7 +346,7 @@ int executeIntCommand(int id, string params[])
       case 120:
          return OrderMagicNumber();
       case 127:
-         return OrderSend(params[0], StrToInteger(params[1]), StringToDouble(params[2]), StringToDouble(params[3]), StrToInteger(params[4]), StringToDouble(params[5]), StringToDouble(params[6]), params[7], StrToInteger(params[8]), StringToTime(params[9]), CONVERT_COLOR(params[10]));
+         return OrderSend(params[0], StrToInteger(params[1]), StringToDouble(params[2]),NormalizeDouble(params[3],Digits), StrToInteger(params[4]), StringToDouble(params[5]), StringToDouble(params[6]), params[7], StrToInteger(params[8]),StringToTime(params[9]), CONVERT_COLOR(params[10]));
       case 128:
          return OrdersHistoryTotal();
       case 130:

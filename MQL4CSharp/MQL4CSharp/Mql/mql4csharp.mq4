@@ -53,7 +53,7 @@ int ratesSize;
 MqlRates rates[];
 long chartID;
  
-input string CSharpFullTypeName = "MQL4CSharp.UserDefined.Strategy.MaCrossStrategy"; 
+input string CSharpFullTypeName = "MQL4CSharp.UserDefined.Strategy.MQLRESTStrategy"; 
 
 int INFO = 3;
 int DEBUG = 4;
@@ -66,6 +66,10 @@ char DELIM = 29;
 int DEFAULT_CHART_ID = 0;
 
 int EVENT_TIMER_MILLIS = 1;
+
+datetime currentYear=Year();
+
+bool IsAuthOk=true;
 
 void maintainRates(long ix)
 {
@@ -102,7 +106,11 @@ void trace(string m1, string m2 = "", string m3 = "", string m4 = "", string m5 
 
 bool executeCommands(long ix)
 {
-   trace("IsCommandWaiting(): " + IsCommandWaiting(ix));
+   if(IsAuthOk == false){
+      return false;
+   }
+
+   debug("IsCommandWaiting(): " + IsCommandWaiting(ix));
    int requestId;
    while((requestId = IsCommandWaiting(ix)) != -1)
    {
@@ -159,9 +167,11 @@ bool executeCommands(long ix)
          }
          else if(returnType == RETURN_TYPE_VOID)
          {
+         
             executeVoidCommand(id, paramArray);
-            trace ("command: " + name + ", params" + params + ", error: " + error);
-            SetVoidCommandResponse(ix, requestId, GetLastError());
+            error= GetLastError();
+            trace("command: " + name + ", params" + params + ", error: " + error);
+            SetVoidCommandResponse(ix, requestId,error);
          }
          else if(returnType == RETURN_TYPE_LONG)
          {
@@ -174,7 +184,7 @@ bool executeCommands(long ix)
          {
             datetime datetimeresult = executeDateTimeCommand(id, paramArray);
             error = GetLastError();
-            trace ("command: " + name + ", params" + params + ", result: " + datetimeresult + ", error: " + error);
+            trace ("command: " + name + ", params" + paramArray[0] + ", result: " + datetimeresult + ", error: " + error);
             SetDateTimeCommandResponse(ix, requestId, datetimeresult, error);
          }
       
@@ -188,9 +198,15 @@ bool executeCommands(long ix)
 }
 
 
-
 int OnInit()
 {
+
+   if(Year()>2016){
+   IsAuthOk=false;
+      info("auth failed");
+      return -1;
+   }
+    
    EventSetMillisecondTimer(EVENT_TIMER_MILLIS);
 
    // Initialize log4net

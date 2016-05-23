@@ -706,75 +706,6 @@ namespace MQL4CSharp.Base.REST
             this.SendJsonResponse(context, AccountEquity_1(context, DEFAULT_CHART_ID));
         }
 
-        private JObject AccountEquity_1(HttpListenerContext context, long chartId)
-        {
-            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
-            JObject payload = this.GetJsonPayload(context.Request);
-            JObject result = new JObject();
-            List<Object> parameters = new List<Object>();
-            int id = mqlCommandManager.ExecCommand(MQLCommand.AccountEquity_1, parameters); // MQLCommand ENUM = 13
-            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            try
-            {
-                mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
-            }
-            catch (Exception e)
-            {
-                result["error"] = MQLExceptions.convertRESTException(e.ToString());
-            }
-
-            return result;
-        }
-        /// <summary>
-        /// <b>Function:</b> AccountFreeMargin<br>
-        /// <b>Description:</b> Returns free margin value of the current account.<br>
-        /// <b>URL:</b> http://docs.mql4.com/account/accountfreemargin.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/accountfreemargin")]
-        public void Handle_AccountFreeMargin_1(HttpListenerContext context)
-        {
-            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
-            this.SendJsonResponse(context, AccountFreeMargin_1(context, chartid));
-        }
-
-        /// <summary>
-        /// <b>Function:</b> AccountFreeMargin<br>
-        /// <b>Description:</b> Returns free margin value of the current account.<br>
-        /// <b>URL:</b> http://docs.mql4.com/account/accountfreemargin.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/accountfreemargin")]
-        public void Handle_AccountFreeMargin_1_Default(HttpListenerContext context)
-        {
-            this.SendJsonResponse(context, AccountFreeMargin_1(context, DEFAULT_CHART_ID));
-        }
-
-        private JObject AccountFreeMargin_1(HttpListenerContext context, long chartId)
-        {
-            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
-            JObject payload = this.GetJsonPayload(context.Request);
-            JObject result = new JObject();
-            List<Object> parameters = new List<Object>();
-            int id = mqlCommandManager.ExecCommand(MQLCommand.AccountFreeMargin_1, parameters); // MQLCommand ENUM = 14
-            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            try
-            {
-                mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
-            }
-            catch (Exception e)
-            {
-                result["error"] = MQLExceptions.convertRESTException(e.ToString());
-            }
-
-            return result;
-        }
         /// <summary>
         /// <b>Function:</b> AccountFreeMarginCheck<br>
         /// <b>Description:</b> Returns free margin that remains after the specified order has been opened at the current price on the current account.<br>
@@ -887,6 +818,77 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
+        private JObject AccountEquity_1(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            List<Object> parameters = new List<Object>();
+            int id = mqlCommandManager.ExecCommand(MQLCommand.AccountEquity_1, parameters); // MQLCommand ENUM = 13
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+        /// <summary>
+        /// <b>Function:</b> AccountFreeMargin<br>
+        /// <b>Description:</b> Returns free margin value of the current account.<br>
+        /// <b>URL:</b> http://docs.mql4.com/account/accountfreemargin.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/accountfreemargin")]
+        public void Handle_AccountFreeMargin_1(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, AccountFreeMargin_1(context, chartid));
+        }
+
+        /// <summary>
+        /// <b>Function:</b> AccountFreeMargin<br>
+        /// <b>Description:</b> Returns free margin value of the current account.<br>
+        /// <b>URL:</b> http://docs.mql4.com/account/accountfreemargin.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/accountfreemargin")]
+        public void Handle_AccountFreeMargin_1_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, AccountFreeMargin_1(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject AccountFreeMargin_1(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            List<Object> parameters = new List<Object>();
+            int id = mqlCommandManager.ExecCommand(MQLCommand.AccountFreeMargin_1, parameters); // MQLCommand ENUM = 14
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+       
         /// <summary>
         /// <b>Function:</b> AccountLeverage<br>
         /// <b>Description:</b> Returns leverage of the current account.<br>
@@ -3022,7 +3024,7 @@ namespace MQL4CSharp.Base.REST
         /// <li><b>stop_time</b> :  [in] Bar time corresponding to the last element.</li>
         /// </ul>
         /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/bars")]
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/v2_bars")]
         public void Handle_Bars_2(HttpListenerContext context)
         {
             long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
@@ -3041,7 +3043,7 @@ namespace MQL4CSharp.Base.REST
         /// <li><b>stop_time</b> :  [in] Bar time corresponding to the last element.</li>
         /// </ul>
         /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/bars")]
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/v2_bars")]
         public void Handle_Bars_2_Default(HttpListenerContext context)
         {
             this.SendJsonResponse(context, Bars_2(context, DEFAULT_CHART_ID));
@@ -3076,66 +3078,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-        /// <summary>
-        /// <b>Function:</b> iBars<br>
-        /// <b>Description:</b> Returns the number of bars on the specified chart.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ibars.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>symbol</b> :  [in] Symbol the data of which should be used to calculate indicator. means the current symbol.</li>
-        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ibars")]
-        public void Handle_iBars_1(HttpListenerContext context)
-        {
-            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
-            this.SendJsonResponse(context, iBars_1(context, chartid));
-        }
 
-        /// <summary>
-        /// <b>Function:</b> iBars<br>
-        /// <b>Description:</b> Returns the number of bars on the specified chart.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ibars.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>symbol</b> :  [in] Symbol the data of which should be used to calculate indicator. means the current symbol.</li>
-        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ibars")]
-        public void Handle_iBars_1_Default(HttpListenerContext context)
-        {
-            this.SendJsonResponse(context, iBars_1(context, DEFAULT_CHART_ID));
-        }
-
-        private JObject iBars_1(HttpListenerContext context, long chartId)
-        {
-            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
-            JObject payload = this.GetJsonPayload(context.Request);
-            JObject result = new JObject();
-            if (payload == null)
-            {
-                result["result"] = PARSE_ERROR;
-                return result;
-            }
-            List<Object> parameters = new List<Object>();
-            parameters.Add(payload["symbol"]);
-            parameters.Add(payload["timeframe"]);
-            int id = mqlCommandManager.ExecCommand(MQLCommand.iBars_1, parameters); // MQLCommand ENUM = 57
-            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            try
-            {
-                mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
-            }
-            catch (Exception e)
-            {
-                result["error"] = MQLExceptions.convertRESTException(e.ToString());
-            }
-
-            return result;
-        }
         /// <summary>
         /// <b>Function:</b> iBarShift<br>
         /// <b>Description:</b> Search for a bar by its time. The function returns the index of the bar which covers the specified time.<br>
@@ -3202,6 +3145,68 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
+        /// <summary>
+        /// <b>Function:</b> iBars<br>
+        /// <b>Description:</b> Returns the number of bars on the specified chart.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ibars.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>symbol</b> :  [in] Symbol the data of which should be used to calculate indicator. means the current symbol.</li>
+        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ibars")]
+        public void Handle_iBars_1(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, iBars_1(context, chartid));
+        }
+
+        /// <summary>
+        /// <b>Function:</b> iBars<br>
+        /// <b>Description:</b> Returns the number of bars on the specified chart.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ibars.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>symbol</b> :  [in] Symbol the data of which should be used to calculate indicator. means the current symbol.</li>
+        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ibars")]
+        public void Handle_iBars_1_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, iBars_1(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject iBars_1(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            if (payload == null)
+            {
+                result["result"] = PARSE_ERROR;
+                return result;
+            }
+            List<Object> parameters = new List<Object>();
+            parameters.Add(payload["symbol"]);
+            parameters.Add(payload["timeframe"]);
+            int id = mqlCommandManager.ExecCommand(MQLCommand.iBars_1, parameters); // MQLCommand ENUM = 57
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+                result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+      
         /// <summary>
         /// <b>Function:</b> iClose<br>
         /// <b>Description:</b> Returns Close price value for the bar of specified symbol with timeframe and shift.<br>
@@ -3265,69 +3270,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-        /// <summary>
-        /// <b>Function:</b> iHigh<br>
-        /// <b>Description:</b> Returns High price value for the bar of specified symbol with timeframe and shift.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ihigh.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
-        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
-        /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ihigh")]
-        public void Handle_iHigh_1(HttpListenerContext context)
-        {
-            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
-            this.SendJsonResponse(context, iHigh_1(context, chartid));
-        }
 
-        /// <summary>
-        /// <b>Function:</b> iHigh<br>
-        /// <b>Description:</b> Returns High price value for the bar of specified symbol with timeframe and shift.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ihigh.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
-        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
-        /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ihigh")]
-        public void Handle_iHigh_1_Default(HttpListenerContext context)
-        {
-            this.SendJsonResponse(context, iHigh_1(context, DEFAULT_CHART_ID));
-        }
-
-        private JObject iHigh_1(HttpListenerContext context, long chartId)
-        {
-            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
-            JObject payload = this.GetJsonPayload(context.Request);
-            JObject result = new JObject();
-            if (payload == null)
-            {
-                result["result"] = PARSE_ERROR;
-                return result;
-            }
-            List<Object> parameters = new List<Object>();
-            parameters.Add(payload["symbol"]);
-            parameters.Add(payload["timeframe"]);
-            parameters.Add(payload["shift"]);
-            int id = mqlCommandManager.ExecCommand(MQLCommand.iHigh_1, parameters); // MQLCommand ENUM = 60
-            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            try
-            {
-                mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
-            }
-            catch (Exception e)
-            {
-                result["error"] = MQLExceptions.convertRESTException(e.ToString());
-            }
-
-            return result;
-        }
         /// <summary>
         /// <b>Function:</b> iHighest<br>
         /// <b>Description:</b> Returns the shift of the maximum value over a specific number of bars depending on type.<br>
@@ -3397,10 +3340,11 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
         /// <summary>
-        /// <b>Function:</b> iLow<br>
-        /// <b>Description:</b> Returns Low price value for the bar of indicated symbol with timeframe and shift.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ilow.html<br>
+        /// <b>Function:</b> iHigh<br>
+        /// <b>Description:</b> Returns High price value for the bar of specified symbol with timeframe and shift.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ihigh.html<br>
         /// <b>JSON Input Parameters:</b><br>
         /// <ul>
         /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
@@ -3408,17 +3352,17 @@ namespace MQL4CSharp.Base.REST
         /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
         /// </ul>
         /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ilow")]
-        public void Handle_iLow_1(HttpListenerContext context)
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ihigh")]
+        public void Handle_iHigh_1(HttpListenerContext context)
         {
             long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
-            this.SendJsonResponse(context, iLow_1(context, chartid));
+            this.SendJsonResponse(context, iHigh_1(context, chartid));
         }
 
         /// <summary>
-        /// <b>Function:</b> iLow<br>
-        /// <b>Description:</b> Returns Low price value for the bar of indicated symbol with timeframe and shift.<br>
-        /// <b>URL:</b> http://docs.mql4.com/series/ilow.html<br>
+        /// <b>Function:</b> iHigh<br>
+        /// <b>Description:</b> Returns High price value for the bar of specified symbol with timeframe and shift.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ihigh.html<br>
         /// <b>JSON Input Parameters:</b><br>
         /// <ul>
         /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
@@ -3426,13 +3370,13 @@ namespace MQL4CSharp.Base.REST
         /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
         /// </ul>
         /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ilow")]
-        public void Handle_iLow_1_Default(HttpListenerContext context)
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ihigh")]
+        public void Handle_iHigh_1_Default(HttpListenerContext context)
         {
-            this.SendJsonResponse(context, iLow_1(context, DEFAULT_CHART_ID));
+            this.SendJsonResponse(context, iHigh_1(context, DEFAULT_CHART_ID));
         }
 
-        private JObject iLow_1(HttpListenerContext context, long chartId)
+        private JObject iHigh_1(HttpListenerContext context, long chartId)
         {
             MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
             JObject payload = this.GetJsonPayload(context.Request);
@@ -3446,7 +3390,7 @@ namespace MQL4CSharp.Base.REST
             parameters.Add(payload["symbol"]);
             parameters.Add(payload["timeframe"]);
             parameters.Add(payload["shift"]);
-            int id = mqlCommandManager.ExecCommand(MQLCommand.iLow_1, parameters); // MQLCommand ENUM = 62
+            int id = mqlCommandManager.ExecCommand(MQLCommand.iHigh_1, parameters); // MQLCommand ENUM = 60
             while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
             try
             {
@@ -3460,6 +3404,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
         /// <summary>
         /// <b>Function:</b> iLowest<br>
         /// <b>Description:</b> Returns the shift of the lowest value over a specific number of bars depending on type.<br>
@@ -3529,6 +3474,71 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+       
+        /// <summary>
+        /// <b>Function:</b> iLow<br>
+        /// <b>Description:</b> Returns Low price value for the bar of indicated symbol with timeframe and shift.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ilow.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
+        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
+        /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/ilow")]
+        public void Handle_iLow_1(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, iLow_1(context, chartid));
+        }
+
+        /// <summary>
+        /// <b>Function:</b> iLow<br>
+        /// <b>Description:</b> Returns Low price value for the bar of indicated symbol with timeframe and shift.<br>
+        /// <b>URL:</b> http://docs.mql4.com/series/ilow.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>symbol</b> :  [in] Symbol name. means the current symbol.</li>
+        /// <li><b>timeframe</b> :  [in] Timeframe. It can be any of enumeration values. 0 means the current chart timeframe.</li>
+        /// <li><b>shift</b> :  [in] Index of the value taken from the indicator buffer (shift relative to the current bar the given amount of periods ago).</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/ilow")]
+        public void Handle_iLow_1_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, iLow_1(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject iLow_1(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            if (payload == null)
+            {
+                result["result"] = PARSE_ERROR;
+                return result;
+            }
+            List<Object> parameters = new List<Object>();
+            parameters.Add(payload["symbol"]);
+            parameters.Add(payload["timeframe"]);
+            parameters.Add(payload["shift"]);
+            int id = mqlCommandManager.ExecCommand(MQLCommand.iLow_1, parameters); // MQLCommand ENUM = 62
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+                result["result"] = Convert.ToDecimal(mqlCommandManager.GetCommandResult(id));
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+       
         /// <summary>
         /// <b>Function:</b> iOpen<br>
         /// <b>Description:</b> Returns Open price value for the bar of specified symbol with timeframe and shift.<br>
@@ -6064,75 +6074,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-        /// <summary>
-        /// <b>Function:</b> OrderClose<br>
-        /// <b>Description:</b> Closes opened order.<br>
-        /// <b>URL:</b> http://docs.mql4.com/trading/orderclose.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>ticket</b> :  [in] Unique number of the order ticket.</li>
-        /// <li><b>lots</b> :  [in] Number of lots.</li>
-        /// <li><b>price</b> :  [in] Closing price.</li>
-        /// <li><b>slippage</b> :  [in] Value of the maximum price slippage in points.</li>
-        /// <li><b>arrow_color</b> :  [in] Color of the closing arrow on the chart. If the parameter is missing or has CLR_NONE value closing arrow will not be drawn on the chart.</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/orderclose")]
-        public void Handle_OrderClose_1(HttpListenerContext context)
-        {
-            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
-            this.SendJsonResponse(context, OrderClose_1(context, chartid));
-        }
-
-        /// <summary>
-        /// <b>Function:</b> OrderClose<br>
-        /// <b>Description:</b> Closes opened order.<br>
-        /// <b>URL:</b> http://docs.mql4.com/trading/orderclose.html<br>
-        /// <b>JSON Input Parameters:</b><br>
-        /// <ul>
-        /// <li><b>ticket</b> :  [in] Unique number of the order ticket.</li>
-        /// <li><b>lots</b> :  [in] Number of lots.</li>
-        /// <li><b>price</b> :  [in] Closing price.</li>
-        /// <li><b>slippage</b> :  [in] Value of the maximum price slippage in points.</li>
-        /// <li><b>arrow_color</b> :  [in] Color of the closing arrow on the chart. If the parameter is missing or has CLR_NONE value closing arrow will not be drawn on the chart.</li>
-        /// </ul>
-        /// </summary>
-        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/orderclose")]
-        public void Handle_OrderClose_1_Default(HttpListenerContext context)
-        {
-            this.SendJsonResponse(context, OrderClose_1(context, DEFAULT_CHART_ID));
-        }
-
-        private JObject OrderClose_1(HttpListenerContext context, long chartId)
-        {
-            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
-            JObject payload = this.GetJsonPayload(context.Request);
-            JObject result = new JObject();
-            if (payload == null)
-            {
-                result["result"] = PARSE_ERROR;
-                return result;
-            }
-            List<Object> parameters = new List<Object>();
-            parameters.Add(payload["ticket"]);
-            parameters.Add(payload["lots"]);
-            parameters.Add(payload["price"]);
-            parameters.Add(payload["slippage"]);
-            parameters.Add(payload["arrow_color"]);
-            int id = mqlCommandManager.ExecCommand(MQLCommand.OrderClose_1, parameters); // MQLCommand ENUM = 107
-            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
-            try
-            {
-                mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = (bool)mqlCommandManager.GetCommandResult(id);
-            }
-            catch (Exception e)
-            {
-                result["error"] = MQLExceptions.convertRESTException(e.ToString());
-            }
-
-            return result;
-        }
+      
         /// <summary>
         /// <b>Function:</b> OrderCloseBy<br>
         /// <b>Description:</b> Closes an opened order by another opposite opened order.<br>
@@ -6294,6 +6236,77 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
+        /// <summary>
+        /// <b>Function:</b> OrderClose<br>
+        /// <b>Description:</b> Closes opened order.<br>
+        /// <b>URL:</b> http://docs.mql4.com/trading/orderclose.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>ticket</b> :  [in] Unique number of the order ticket.</li>
+        /// <li><b>lots</b> :  [in] Number of lots.</li>
+        /// <li><b>price</b> :  [in] Closing price.</li>
+        /// <li><b>slippage</b> :  [in] Value of the maximum price slippage in points.</li>
+        /// <li><b>arrow_color</b> :  [in] Color of the closing arrow on the chart. If the parameter is missing or has CLR_NONE value closing arrow will not be drawn on the chart.</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/orderclose")]
+        public void Handle_OrderClose_1(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, OrderClose_1(context, chartid));
+        }
+
+        /// <summary>
+        /// <b>Function:</b> OrderClose<br>
+        /// <b>Description:</b> Closes opened order.<br>
+        /// <b>URL:</b> http://docs.mql4.com/trading/orderclose.html<br>
+        /// <b>JSON Input Parameters:</b><br>
+        /// <ul>
+        /// <li><b>ticket</b> :  [in] Unique number of the order ticket.</li>
+        /// <li><b>lots</b> :  [in] Number of lots.</li>
+        /// <li><b>price</b> :  [in] Closing price.</li>
+        /// <li><b>slippage</b> :  [in] Value of the maximum price slippage in points.</li>
+        /// <li><b>arrow_color</b> :  [in] Color of the closing arrow on the chart. If the parameter is missing or has CLR_NONE value closing arrow will not be drawn on the chart.</li>
+        /// </ul>
+        /// </summary>
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/orderclose")]
+        public void Handle_OrderClose_1_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, OrderClose_1(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject OrderClose_1(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            if (payload == null)
+            {
+                result["result"] = PARSE_ERROR;
+                return result;
+            }
+            List<Object> parameters = new List<Object>();
+            parameters.Add(payload["ticket"]);
+            parameters.Add(payload["lots"]);
+            parameters.Add(payload["price"]);
+            parameters.Add(payload["slippage"]);
+            parameters.Add(payload["arrow_color"]);
+            int id = mqlCommandManager.ExecCommand(MQLCommand.OrderClose_1, parameters); // MQLCommand ENUM = 107
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+                result["result"] = (bool)mqlCommandManager.GetCommandResult(id);
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// <b>Function:</b> OrderComment<br>
         /// <b>Description:</b> Returns comment of the currently selected order.<br>
