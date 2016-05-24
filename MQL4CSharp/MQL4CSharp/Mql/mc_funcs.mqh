@@ -178,6 +178,10 @@ double executeDoubleCommand(int id, string params[])
          return iOpen(params[0], StrToInteger(params[1]), StrToInteger(params[2]));
       case 89:
          return ChartPriceOnDropped();
+      case 102:
+         return WindowPriceMax(StrToInteger(params[0]));
+      case 103:
+         return WindowPriceMin(StrToInteger(params[0]));
       case 104:
          return WindowPriceOnDropped();
       case 113:
@@ -333,10 +337,6 @@ int executeIntCommand(int id, string params[])
          return WindowIsVisible(StrToInteger(params[0]));
       case 101:
          return WindowOnDropped();
-      case 102:
-         return WindowPriceMax(StrToInteger(params[0]));
-      case 103:
-         return WindowPriceMin(StrToInteger(params[0]));
       case 108:
          return WindowsTotal();
       case 109:

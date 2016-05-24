@@ -214,9 +214,9 @@ int getCommandReturnType(int id)
       case 101:
         return RETURN_TYPE_INT;
       case 102:
-        return RETURN_TYPE_INT;
+        return RETURN_TYPE_DOUBLE;
       case 103:
-        return RETURN_TYPE_INT;
+        return RETURN_TYPE_DOUBLE;
       case 104:
         return RETURN_TYPE_DOUBLE;
       case 105:

@@ -5642,7 +5642,7 @@ namespace MQL4CSharp.Base.REST
             try
             {
                 mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
+                result["result"] = Convert.ToDouble(mqlCommandManager.GetCommandResult(id));
             }
             catch (Exception e)
             {
@@ -5699,7 +5699,7 @@ namespace MQL4CSharp.Base.REST
             try
             {
                 mqlCommandManager.throwExceptionIfErrorResponse(id);
-                result["result"] = Convert.ToInt32(mqlCommandManager.GetCommandResult(id));
+                result["result"] = Convert.ToDouble(mqlCommandManager.GetCommandResult(id));
             }
             catch (Exception e)
             {

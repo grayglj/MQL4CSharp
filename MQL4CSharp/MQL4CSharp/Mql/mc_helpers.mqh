@@ -19,7 +19,7 @@ int CONVERT_ENUM_ALIGN_MODE(string value)
     }
 }
 
-int CONVERT_COLOR(string value)
+color CONVERT_COLOR(string value)
 {
     if(value == "NONE")
     {
