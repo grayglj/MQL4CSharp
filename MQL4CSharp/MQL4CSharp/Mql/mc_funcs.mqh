@@ -70,7 +70,7 @@ bool executeBoolCommand(int id, string params[])
       case 117:
          return OrderDelete(StrToInteger(params[0]), CONVERT_COLOR(params[1]));
       case 121:
-         return OrderModify(StrToInteger(params[0]), StringToDouble(params[1]), StringToDouble(params[2]), StringToDouble(params[3]), StringToTime(params[4]), CONVERT_COLOR(params[5]));
+         return OrderModify(StrToInteger(params[0]), NormalizeDouble(StringToDouble(params[1]),Digits), StringToDouble(params[2]), StringToDouble(params[3]), StringToTime(params[4]), CONVERT_COLOR(params[5]));
       case 126:
          return OrderSelect(StrToInteger(params[0]), StrToInteger(params[1]), StrToInteger(params[2]));
       case 139:
