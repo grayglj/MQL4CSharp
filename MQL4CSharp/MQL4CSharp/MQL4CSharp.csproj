@@ -140,6 +140,7 @@
     <None Include="Mql\mc_helpers.mqh" />
     <None Include="Mql\mc_returns.mqh" />
     <None Include="Mql\mql4csharp.mq4" />
+    <None Include="Mql\TradeHelper.mqh" />
     <None Include="packages.config" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

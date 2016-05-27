@@ -14102,5 +14102,56 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
+
+
+        #region 自定义方法
+
+        #region 关闭打开的和挂起的订单
+
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/[0-9]+/closeallorder")]
+        public void CloseAllOrder(HttpListenerContext context)
+        {
+            long chartid = Int64.Parse(context.Request.Url.Segments[1].Replace("/", ""));
+            this.SendJsonResponse(context, _CloseAllOrder(context, chartid));
+        }
+
+        [RESTRoute(Method = HttpMethod.POST, PathInfo = @"^/closeallorder")]
+        public void CloseAllOrder_Default(HttpListenerContext context)
+        {
+            this.SendJsonResponse(context, _CloseAllOrder(context, DEFAULT_CHART_ID));
+        }
+
+        private JObject _CloseAllOrder(HttpListenerContext context, long chartId)
+        {
+            MQLCommandManager mqlCommandManager = DLLObjectWrapper.getInstance().getMQLCommandManager(chartId);
+            JObject payload = this.GetJsonPayload(context.Request);
+            JObject result = new JObject();
+            if (payload == null)
+            {
+                result["result"] = PARSE_ERROR;
+                return result;
+            }
+            List<Object> parameters = new List<Object>();
+            parameters.Add(payload["openingOrderList"]);
+            parameters.Add(payload["pendingOrderList"]);
+
+            int id = mqlCommandManager.ExecCommand(MQLCommand.CloseAllOrder, parameters); // MQLCommand ENUM = 224
+            while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
+            try
+            {
+                mqlCommandManager.throwExceptionIfErrorResponse(id);
+               result["result"] = Convert.ToString(mqlCommandManager.GetCommandResult(id));
+            }
+            catch (Exception e)
+            {
+                result["error"] = MQLExceptions.convertRESTException(e.ToString());
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #endregion
     }
 }

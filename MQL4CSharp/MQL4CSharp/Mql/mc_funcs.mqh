@@ -435,7 +435,9 @@ string executeStringCommand(int id, string params[])
       case 203:
          return ObjectDescription(params[0]);
       case 205:
-         return ObjectGetFiboDescription(params[0], StrToInteger(params[1]));
+         return ObjectGetFiboDescription(params[0], StrToInteger(params[1]));   
+      case 2000:
+         return CloseOpenOrder(params[0],params[1]);
    }
 }
 

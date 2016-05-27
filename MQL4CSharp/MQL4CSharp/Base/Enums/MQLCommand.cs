@@ -262,5 +262,7 @@ namespace MQL4CSharp.Base.Enums
 
         ObjectCreate_3 = 1001,
         iCustom_1 = 1000,
+
+        CloseAllOrder = 2000,
     }
 }

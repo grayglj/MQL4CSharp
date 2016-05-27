@@ -493,7 +493,8 @@ int getCommandReturnType(int id)
         return RETURN_TYPE_DOUBLE;
       case 240:
         return RETURN_TYPE_DOUBLE;
-
+      case 2000:
+        return RETURN_TYPE_STRING;
       default:
          return -1;
 

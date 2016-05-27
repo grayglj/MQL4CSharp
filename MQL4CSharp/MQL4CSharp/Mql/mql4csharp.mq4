@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2016 Jason Separovic
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,7 @@ limitations under the License.
 #include <mc_helpers.mqh>
 #include <mc_funcs.mqh>
 #include <mc_returns.mqh>
+#include <Gray_TradeHelper.mqh>
 
 
 #import "MQL4CSharp.dll"
@@ -62,6 +63,8 @@ int TRACE = 5;
 int LOGLEVEL = INFO;
  
 char DELIM = 29;
+//string ',' 分隔符
+ushort StringSeparator=0;
 
 int DEFAULT_CHART_ID = 0;
 
@@ -110,7 +113,7 @@ bool executeCommands(long ix)
       return false;
    }
 
-   debug("IsCommandWaiting(): " + IsCommandWaiting(ix));
+   //debug("IsCommandWaiting(): " + IsCommandWaiting(ix));
    int requestId;
    while((requestId = IsCommandWaiting(ix)) != -1)
    {
@@ -206,6 +209,8 @@ int OnInit()
       info("auth failed");
       return -1;
    }
+   
+   StringSeparator=StringGetChar(",",0);
     
    EventSetMillisecondTimer(EVENT_TIMER_MILLIS);
 
