@@ -181,7 +181,7 @@ namespace MQL4CSharp.Base.MQL
                 {
                     if (getInstance(ix).commandRequests[id].CommandWaiting)
                     {
-                        return (int) getInstance(ix).commandRequests[id].Command;
+                        return (int)getInstance(ix).commandRequests[id].Command;
                     }
                     else
                     {
@@ -232,6 +232,7 @@ namespace MQL4CSharp.Base.MQL
                     if (getInstance(ix).commandRequests[id].CommandWaiting)
                     {
                         commandParams.Append(getInstance(ix).getCommandParams(id));
+                        LOG.Info("002:" + commandParams);
                     }
                     else
                     {

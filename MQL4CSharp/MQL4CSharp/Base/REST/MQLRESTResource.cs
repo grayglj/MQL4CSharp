@@ -888,7 +888,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-       
+
         /// <summary>
         /// <b>Function:</b> AccountLeverage<br>
         /// <b>Description:</b> Returns leverage of the current account.<br>
@@ -3206,7 +3206,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-      
+
         /// <summary>
         /// <b>Function:</b> iClose<br>
         /// <b>Description:</b> Returns Close price value for the bar of specified symbol with timeframe and shift.<br>
@@ -3474,7 +3474,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-       
+
         /// <summary>
         /// <b>Function:</b> iLow<br>
         /// <b>Description:</b> Returns Low price value for the bar of indicated symbol with timeframe and shift.<br>
@@ -3538,7 +3538,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-       
+
         /// <summary>
         /// <b>Function:</b> iOpen<br>
         /// <b>Description:</b> Returns Open price value for the bar of specified symbol with timeframe and shift.<br>
@@ -6074,7 +6074,7 @@ namespace MQL4CSharp.Base.REST
 
             return result;
         }
-      
+
         /// <summary>
         /// <b>Function:</b> OrderCloseBy<br>
         /// <b>Description:</b> Closes an opened order by another opposite opened order.<br>
@@ -14103,7 +14103,6 @@ namespace MQL4CSharp.Base.REST
             return result;
         }
 
-
         #region 自定义方法
 
         #region 关闭打开的和挂起的订单
@@ -14132,15 +14131,14 @@ namespace MQL4CSharp.Base.REST
                 return result;
             }
             List<Object> parameters = new List<Object>();
-            parameters.Add(payload["openingOrderList"]);
-            parameters.Add(payload["pendingOrderList"]);
+            parameters.Add(payload["SlipPage"]);
 
             int id = mqlCommandManager.ExecCommand(MQLCommand.CloseAllOrder, parameters); // MQLCommand ENUM = 224
             while (mqlCommandManager.IsCommandRunning(id)) ; // block while command is running
             try
             {
                 mqlCommandManager.throwExceptionIfErrorResponse(id);
-               result["result"] = Convert.ToString(mqlCommandManager.GetCommandResult(id));
+                result["result"] = "";
             }
             catch (Exception e)
             {

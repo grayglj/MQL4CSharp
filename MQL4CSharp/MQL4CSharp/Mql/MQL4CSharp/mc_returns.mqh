@@ -1,4 +1,4 @@
-﻿int RETURN_TYPE_BOOL = 1;
+int RETURN_TYPE_BOOL = 1;
 int RETURN_TYPE_DOUBLE = 2;
 int RETURN_TYPE_INT = 3;
 int RETURN_TYPE_STRING = 4;
@@ -494,7 +494,7 @@ int getCommandReturnType(int id)
       case 240:
         return RETURN_TYPE_DOUBLE;
       case 2000:
-        return RETURN_TYPE_STRING;
+        return RETURN_TYPE_VOID;
       default:
          return -1;
 

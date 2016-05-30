@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\Users\GrayGuo\AppData\Roaming\MetaQuotes\Terminal\50CA3DFB510CC5A8F28B48D1BF2A5702\MQL4\Libraries\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -136,11 +136,14 @@
     <Compile Include="UserDefined\Input\NewsReport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mql\Gray_TradeHelper.mqh" />
-    <None Include="Mql\mc_funcs.mqh" />
-    <None Include="Mql\mc_helpers.mqh" />
-    <None Include="Mql\mc_returns.mqh" />
-    <None Include="Mql\mql4csharp.mq4" />
+    <None Include="Mql\ComponentHelper\TradeHelper.mqh" />
+    <None Include="Mql\ComponentLibrary\hash.mqh" />
+    <None Include="Mql\ComponentLibrary\json.mqh" />
+    <None Include="Mql\MyFirstEA.ex4" />
+    <None Include="Mql\MyFirstEA.mq4" />
+    <None Include="Mql\MQL4CSharp\mc_funcs.mqh" />
+    <None Include="Mql\MQL4CSharp\mc_helpers.mqh" />
+    <None Include="Mql\MQL4CSharp\mc_returns.mqh" />
     <None Include="packages.config" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

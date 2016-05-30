@@ -1,4 +1,4 @@
-﻿
+
 int CONVERT_ENUM_ALIGN_MODE(string value)
 {
     if(value == "ALIGN_LEFT")

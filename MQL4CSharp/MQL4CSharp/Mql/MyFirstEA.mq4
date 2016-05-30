@@ -14,16 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-#include <mc_helpers.mqh>
-#include <mc_funcs.mqh>
-#include <mc_returns.mqh>
-#include <Gray_TradeHelper.mqh>
 
+#include "..\Include\ComponentLibrary\hash.mqh"
+#include "..\Include\ComponentLibrary\json.mqh"
+
+
+#include "..\Include\MQL4CSharp\mc_helpers.mqh"
+#include "..\Include\MQL4CSharp\mc_funcs.mqh"
+#include "..\Include\MQL4CSharp\mc_returns.mqh"
+#include "..\Include\ComponentHelper\TradeHelper.mqh"
+#include "..\Include\ComponentLibrary\hash.mqh"
 
 #import "MQL4CSharp.dll"
 void InitLogging();
-int ExecOnInit(long, string);
-int InitRates(long, MqlRates&[], int);
+int  ExecOnInit(long, string);
+int  InitRates(long, MqlRates&[], int);
 void SetRatesSize(long, int);
 void ExecOnDeinit(long);
 void ExecOnTick(long);
@@ -33,8 +38,8 @@ bool IsExecutingOnTick(long);
 bool IsExecutingOnTimer(long);
 bool IsExecutingOnDeinit(long);
 bool IsCommandManagerReady(long);
-int IsCommandWaiting(long);
-int GetCommandId(long, int);
+int  IsCommandWaiting(long);
+int  GetCommandId(long, int);
 void GetCommandName(long, int, string &cmdName);
 void GetCommandParams(long, int, string &cmdParams);
 void SetBoolCommandResponse(long, int, bool, int);
@@ -125,11 +130,12 @@ bool executeCommands(long ix)
          string name = "";
          string params = "";
          GetCommandName(ix, requestId, name);
+         info("name: " +  name);
          GetCommandParams(ix, requestId, params);
+         info("params: " +  params);
          
-         debug("name: " +  name);
-         debug("params: " +  params);
-   
+         
+        
          // Parse the command
          string paramArray[];
          StringSplit(params, DELIM, paramArray);
@@ -204,6 +210,10 @@ bool executeCommands(long ix)
 int OnInit()
 {
 
+ string name1="{\"AllOrderList\":{\"SymbolType\":\"111111111111sadfas11111111111sadfaz\"}}";
+         
+   info(name1);
+   
    if(Year()>2016){
    IsAuthOk=false;
       info("auth failed");
